@@ -20,14 +20,14 @@ function buildMetadata(sample)
 
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
-    let tags = filteredData1[0]
-    Object.entries(tags).forEach(([key, value]) => 
+    let newTags = filteredData1[0]
+    Object.entries(newTags).forEach(([key, value]) => 
       {panel.append("p").text (`${key}: ${value}`);});
    });
 }
 
 // function to build both charts
-function buildCharts(sample) 
+function buildChart(sample) 
 {
   d3.json(url).then((data) => {
 
@@ -38,13 +38,11 @@ function buildCharts(sample)
     let filteredData2 = samples.find(sampleObj => sampleObj.id == sample);
 
     // Get the otu_ids, otu_labels, and sample_values
-
     let otu_ids = filteredData2.otu_ids;
     let otu_labels = filteredData2.otu_labels;
     let sample_values = filteredData2.sample_values;
 
     // Build a Bubble Chart
-
     let bubbleTrace = 
     {
       x: otu_ids,
@@ -66,7 +64,7 @@ function buildCharts(sample)
       height: 500,
       width: 1200,
     };
-
+    
     // Render the Bubble Chart
     Plotly.newPlot('bubble', [bubbleTrace], bubblelayout);
 
@@ -90,7 +88,6 @@ function buildCharts(sample)
 
     // Render the Bar Chart
     Plotly.newPlot('bar', [barTrace], barlayout);
-
   });
 }
 
@@ -106,17 +103,15 @@ function init()
     // Use the list of sample names to populate the select options
     // Hint: Inside a loop, you will need to use d3 to append a new
     // option for each sample name.
-
-    names.forEach(name => {dropdown.append("option").text(name).property("value", name);});
+    names.forEach(name => 
+      {dropdown.append("option").text(name).property("value", name);});
 
     // Get the first sample from the list
-
     let firstSample = names[0];
     console.log(firstSample);
 
     // Build charts and metadata panel with the first sample
-
-    buildCharts(firstSample);
+    buildChart(firstSample);
     buildMetadata(firstSample);
  });
 }
@@ -124,8 +119,11 @@ function init()
 // Function for event listener
 function optionChanged(newSample) 
 {
+  //Get the new sample from the list
+  console.log(newSample);
+
   // Build charts and metadata panel each time a new sample is selected
-  buildCharts(newSample);
+  buildChart(newSample);
   buildMetadata(newSample);
 }
 
