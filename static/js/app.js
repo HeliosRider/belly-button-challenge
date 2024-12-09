@@ -10,8 +10,10 @@ function buildMetadata(sample)
     let metadata = data.metadata;
     
     // Filter the metadata for the object with the desired sample number
-    let filteredData1 = metadata.filter((metadata) => metadata.id == sample);
+    const filteredData1 = metadata.filter((metadata) => metadata.id == sample);
+    console.log(filteredData1);
 
+    //const filteredData1 = metadata.find(metadata => metadata.id == sample)
     // Use d3 to select the panel with id of `#sample-metadata`
     let panel = d3.select("#sample-metadata");
 
@@ -35,7 +37,9 @@ function buildChart(sample)
     let samples = data.samples;
 
     // Filter the samples for the object with the desired sample number
-    let filteredData2 = samples.find(sampleObj => sampleObj.id == sample);
+    //const filteredData2  = samples.filter((samples) => samples.id == sample);
+    const filteredData2 = samples.find(samples => samples.id == sample);
+    console.log(filteredData2);
 
     // Get the otu_ids, otu_labels, and sample_values
     let otu_ids = filteredData2.otu_ids;
@@ -56,7 +60,6 @@ function buildChart(sample)
         colorscale: 'Earth'
       }
     };
-
     let bubblelayout = {
       title: "Bacteria Cultures Per Sample",
       xaxis: {title: "OTU ID"},
@@ -69,17 +72,18 @@ function buildChart(sample)
     Plotly.newPlot('bubble', [bubbleTrace], bubblelayout);
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
-    let yticks = otu_ids.slice(0, 10).map(id => `OTU ${id}`).reverse();
+    let yticks = otu_ids.slice(0, 10).map(id => `OTU ${id}`)
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
     let barTrace = {
       x: sample_values.slice(0, 10).reverse(),
-      y: yticks,
+      y: yticks,//.reverse(),
       text: otu_labels.slice(0, 10).reverse(),
       type: 'bar',
       orientation: 'h'
     };
+    console.log(barTrace);
 
     let barlayout = {
       title: 'Top 10 Bacteria Cultures Found',
@@ -93,9 +97,11 @@ function buildChart(sample)
 
 // Function to run on page load
 function init() 
+
 {d3.json(url).then((data) => 
   { // Get the names field
     let names = data.names
+    console.log(names); 
 
     // Use d3 to select the dropdown with id of `#selDataset`
     let dropdown = d3.select("#selDataset");
@@ -118,13 +124,13 @@ function init()
 
 // Function for event listener
 function optionChanged(newSample) 
-{
-  //Get the new sample from the list
+
+{ //Get the new sample from the list
   console.log(newSample);
 
   // Build charts and metadata panel each time a new sample is selected
   buildChart(newSample);
-  buildMetadata(newSample);
+  buildMetadata(newSample); 
 }
 
 // Initialize the dashboard
