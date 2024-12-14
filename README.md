@@ -4,7 +4,7 @@
 Build an interactive dashboard to explore the Belly Button Biodiversity datase, which catalogs the microbes that colonize human navels.
 
 # Background
-The provided dataset revealed that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) 
+The provided dataset revealed that a small handful of microbial species also called Operational Taxonomic Units (OTU's) in the study
 were present in more than 70% of people, while the rest were relatively rare.
 
 # Data Engineering
@@ -14,3 +14,8 @@ were present in more than 70% of people, while the rest were relatively rare.
   4. Visual Studio Code
 
 # Data Analysis
+Bar and Bubble Charts were created to represent the microbial diversity in the belly button of the provided human samples.
+
+The bar Chart display the top 10 OTUs found in an individual human sample. whereas the bubble chart displays the full range of OTU's found in an individual sample.
+
+the App was successfully deployed to GitHub Pages.
