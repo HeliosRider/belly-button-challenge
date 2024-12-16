@@ -86,14 +86,14 @@ function buildChart(sample)
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
 
-    let yticks = otu_ids.slice(0, 10).map(id => `OTU ${id}`)
+    let yticks = otu_ids.slice(0, 10).map(id => `OTU ${id}`).reverse()
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
 
     let barTrace = {
       x: sample_values.slice(0, 10).reverse(),
-      y: yticks.reverse(),
+      y: yticks,
       text: otu_labels.slice(0, 10).reverse(),
       type: "bar",
       orientation: 'h'
