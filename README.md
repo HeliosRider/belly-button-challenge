@@ -18,4 +18,5 @@ Bar and Bubble Charts were created to represent the microbial diversity in the b
 
 The bar Chart display the top 10 OTUs found in an individual human sample. whereas the bubble chart displays the full range of OTU's found in an individual sample.
 
-the App was successfully deployed to GitHub Pages.
+My Belly Butto App was successfully deployed to GitHub Pages at: 
+https://heliosrider.github.io/MyBellyButton-APP/
